@@ -1,5 +1,7 @@
 # IAM Access Analyzer Custom Policy Checks Demo Repository
 
+![image](https://github.com/user-attachments/assets/54ccf852-0715-41f7-a676-ceb994336043)
+
 ## Overview
 
 This repository demonstrates the use of AWS IAM Access Analyzer Custom Policy Checks, a powerful feature that helps you proactively identify critical permissions and potential risks in IAM policies. These checks leverage automated reasoning to provide higher levels of security assurance and can be integrated into CI/CD pipelines or used locally for policy evaluation.
