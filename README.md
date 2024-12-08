@@ -29,17 +29,32 @@ This repository demonstrates the use of AWS IAM Access Analyzer Custom Policy Ch
 * IAM Access Analyzer enabled in your AWS account.
 
 **Running Custom Policy Checks Locally**
-Check No New Access
 
-bash scripts/check_no_new_access.sh example_old_policy.json example_new_policy.json
+* Check No New Access
+```
+aws accessanalyzer policy-check check-no-new-access \
+    --policy-type IDENTITY_POLICY \
+    --current-policy file://example_new_policy.json \
+    --previous-policy file://example_old_policy.json
+```
 
-Check Access Not Granted
+* Check Access Not Granted
 
-bash scripts/check_access_not_granted.sh example_new_policy.json
+```
+aws accessanalyzer policy-check check-access-not-granted \
+    --policy-type IDENTITY_POLICY \
+    --policy file://example_new_policy.json \
+    --access-constraint "action=sts:AssumeRole,principal=*"
+```
 
-Check No Public Access
+* Check No Public Access
 
-bash scripts/check_no_public_access.sh public_resource_policy.json
+```
+aws accessanalyzer policy-check check-no-public-access \
+    --policy-type RESOURCE_POLICY \
+    --policy file://public_resource_policy.json \
+    --resource-type S3_BUCKET
+```
 
 **Using GitHub Actions**
 
