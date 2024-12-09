@@ -60,13 +60,36 @@ aws accessanalyzer check-no-public-access \
 
 **Using GitHub Actions**
 
-Step 1: Create a repository secret for AWS credentials
+Step 1: Create a dedicated user for GitHub Actions with the following permissions policy
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "IAMAccessAnalyzerDemoPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "access-analyzer:ListAnalyzers",
+                "access-analyzer:ValidatePolicy",
+                "access-analyzer:CheckAccessNotGranted",
+                "access-analyzer:CheckNoNewAccess",
+                "access-analyzer:CheckNoPublicAccess"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}   
+```
+
+Step 2: Create a repository secret for AWS credentials
 ```
     Go to your repository’s Settings > Secrets and variables > Actions.
     Add secrets for AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_REGION.
 ```
 
-Step 2: Trigger workflows
+Step 3: Trigger workflows
 ```
     Push a new policy or update an existing policy in the policies/ directory.
     Run the corresponding workflow manually, evaluating the policy with the specified check.

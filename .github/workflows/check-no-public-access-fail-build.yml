@@ -1,4 +1,4 @@
-name: Check No Public Access
+name: Check No Public Access (Fail Build in case of issues)
 
 on:
   workflow_dispatch # workflow will be triggered manually
@@ -19,6 +19,14 @@ jobs:
 
       - name: Run IAM Access Analyzer Check (No Public Access)
         run: |
+          # Below you can find an example workflow that will fail the build if
+          # IAM Access Analyzer detected issues within the submitted policy
           aws accessanalyzer check-no-public-access \
             --policy-document file://policies/public_resource_policy.json \
-            --resource-type AWS::S3::Bucket
+            --resource-type AWS::S3::Bucket > output.json
+          INSPECTION_RES=$(cat output.json | grep "FAIL")
+          if [ "$INSPECTION_RES" !== "" ]; then
+            echo "Issues detected during analysis, details: $(cat output.json)" && exit 1
+          else
+            echo "Not detected issues with the submitted policy"
+          fi
