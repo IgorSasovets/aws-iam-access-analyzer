@@ -21,5 +21,5 @@ jobs:
         run: |
           aws accessanalyzer check-access-not-granted \
             --policy-type IDENTITY_POLICY \
-            --policy file://policies/example_new_policy.json \
-            --access-constraint "action=sts:AssumeRole,principal=*"
+            --policy-document file://policies/example_new_policy.json \
+            --access actions="sts:AssumeRole"

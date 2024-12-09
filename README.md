@@ -36,8 +36,8 @@ This repository demonstrates the use of AWS IAM Access Analyzer Custom Policy Ch
 ```
 aws accessanalyzer check-no-new-access \
     --policy-type IDENTITY_POLICY \
-    --current-policy file://example_new_policy.json \
-    --previous-policy file://example_old_policy.json
+    --new-policy-document file://example_new_policy.json \
+    --existing-policy-document file://example_old_policy.json
 ```
 
 * Check Access Not Granted
@@ -45,8 +45,8 @@ aws accessanalyzer check-no-new-access \
 ```
 aws accessanalyzer check-access-not-granted \
     --policy-type IDENTITY_POLICY \
-    --policy file://example_new_policy.json \
-    --access-constraint "action=sts:AssumeRole,principal=*"
+    --policy-document file://example_new_policy.json \
+    --access actions="sts:AssumeRole"
 ```
 
 * Check No Public Access
@@ -54,8 +54,8 @@ aws accessanalyzer check-access-not-granted \
 ```
 aws accessanalyzer check-no-public-access \
     --policy-type RESOURCE_POLICY \
-    --policy file://public_resource_policy.json \
-    --resource-type S3_BUCKET
+    --policy-document file://public_resource_policy.json \
+    --resource-type AWS::S3::Bucket
 ```
 
 **Using GitHub Actions**
@@ -85,22 +85,22 @@ Custom Policy Checks Overview
 ```
 aws accessanalyzer check-no-new-access \
     --policy-type IDENTITY_POLICY \
-    --current-policy file://example_new_policy.json \
-    --previous-policy file://example_old_policy.json
+    --new-policy-document file://example_new_policy.json \
+    --existing-policy-document file://example_old_policy.json
 ```
 2. Ensuring Access is Not Granted
 ```
 aws accessanalyzer check-access-not-granted \
     --policy-type IDENTITY_POLICY \
-    --policy file://example_new_policy.json \
-    --access-constraint "action=sts:AssumeRole,principal=*"
+    --policy-document file://example_new_policy.json \
+    --access actions="sts:AssumeRole"
 ```
 3. Validating No Public Access
 ```
 aws accessanalyzer check-no-public-access \
     --policy-type RESOURCE_POLICY \
-    --policy file://public_resource_policy.json \
-    --resource-type S3_BUCKET
+    --policy-document file://public_resource_policy.json \
+    --resource-type AWS::S3::Bucket
 ```
 
 ## Contributing

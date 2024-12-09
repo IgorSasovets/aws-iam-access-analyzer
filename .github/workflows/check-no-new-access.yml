@@ -21,5 +21,5 @@ jobs:
         run: |
           aws accessanalyzer check-no-new-access \
             --policy-type IDENTITY_POLICY \
-            --current-policy file://policies/example_new_policy.json \
-            --previous-policy file://policies/example_old_policy.json
+            --new-policy-document file://policies/example_new_policy.json \
+            --existing-policy-document file://policies/example_old_policy.json
