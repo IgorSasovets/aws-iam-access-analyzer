@@ -34,7 +34,7 @@ This repository demonstrates the use of AWS IAM Access Analyzer Custom Policy Ch
 
 * Check No New Access
 ```
-aws accessanalyzer policy-check check-no-new-access \
+aws accessanalyzer check-no-new-access \
     --policy-type IDENTITY_POLICY \
     --current-policy file://example_new_policy.json \
     --previous-policy file://example_old_policy.json
@@ -43,7 +43,7 @@ aws accessanalyzer policy-check check-no-new-access \
 * Check Access Not Granted
 
 ```
-aws accessanalyzer policy-check check-access-not-granted \
+aws accessanalyzer check-access-not-granted \
     --policy-type IDENTITY_POLICY \
     --policy file://example_new_policy.json \
     --access-constraint "action=sts:AssumeRole,principal=*"
@@ -52,7 +52,7 @@ aws accessanalyzer policy-check check-access-not-granted \
 * Check No Public Access
 
 ```
-aws accessanalyzer policy-check check-no-public-access \
+aws accessanalyzer check-no-public-access \
     --policy-type RESOURCE_POLICY \
     --policy file://public_resource_policy.json \
     --resource-type S3_BUCKET
@@ -83,21 +83,21 @@ Custom Policy Checks Overview
 
 1. Checking for New Access in a Policy
 ```
-aws accessanalyzer policy-check check-no-new-access \
+aws accessanalyzer check-no-new-access \
     --policy-type IDENTITY_POLICY \
     --current-policy file://example_new_policy.json \
     --previous-policy file://example_old_policy.json
 ```
 2. Ensuring Access is Not Granted
 ```
-aws accessanalyzer policy-check check-access-not-granted \
+aws accessanalyzer check-access-not-granted \
     --policy-type IDENTITY_POLICY \
     --policy file://example_new_policy.json \
     --access-constraint "action=sts:AssumeRole,principal=*"
 ```
 3. Validating No Public Access
 ```
-aws accessanalyzer policy-check check-no-public-access \
+aws accessanalyzer check-no-public-access \
     --policy-type RESOURCE_POLICY \
     --policy file://public_resource_policy.json \
     --resource-type S3_BUCKET

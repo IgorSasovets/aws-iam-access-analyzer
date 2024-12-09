@@ -19,7 +19,7 @@ jobs:
 
       - name: Run IAM Access Analyzer Check (No New Access)
         run: |
-          aws accessanalyzer policy-check check-no-new-access \
+          aws accessanalyzer check-no-new-access \
             --policy-type IDENTITY_POLICY \
             --current-policy file://policies/example_new_policy.json \
             --previous-policy file://policies/example_old_policy.json

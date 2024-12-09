@@ -19,7 +19,7 @@ jobs:
 
       - name: Run IAM Access Analyzer Check (Access Not Granted)
         run: |
-          aws accessanalyzer policy-check check-access-not-granted \
+          aws accessanalyzer check-access-not-granted \
             --policy-type IDENTITY_POLICY \
             --policy file://policies/violating_policy.json \
             --access-constraint "action=sts:AssumeRole,principal=*"

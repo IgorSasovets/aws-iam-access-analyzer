@@ -19,7 +19,7 @@ jobs:
 
       - name: Run IAM Access Analyzer Check (No Public Access)
         run: |
-          aws accessanalyzer policy-check check-no-public-access \
+          aws accessanalyzer check-no-public-access \
             --policy-type RESOURCE_POLICY \
             --policy file://policies/public_resource_policy.json \
             --resource-type S3_BUCKET
