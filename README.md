@@ -14,6 +14,13 @@ This repository demonstrates the use of AWS IAM Access Analyzer Custom Policy Ch
 ## Repository Structure
 
 ```
+├── .github/
+│   ├── workflows/
+│       ├── check-no-new-access.yml                  # GitHub Action workflow for `check-no-new-access`
+│       ├── check-access-not-granted-negative.yml    # GitHub Action workflow for `check-access-not-granted`, policy with issues
+│       ├── check-access-not-granted-positive.yml    # GitHub Action workflow for `check-access-not-granted`, policy with no issues
+│       ├── check-no-public-access-fail-build.yml    # GitHub Action workflow for `check-no-public-access`, fails build if inspection fails
+│       ├── check-no-public-access.yml               # GitHub Action workflow for `check-no-public-access`
 ├── workflows/
 │   ├── check-no-new-access.yml         # GitHub Action workflow for `check-no-new-access`
 │   ├── check-access-not-granted.yml    # GitHub Action workflow for `check-access-not-granted`
@@ -53,7 +60,6 @@ aws accessanalyzer check-access-not-granted \
 
 ```
 aws accessanalyzer check-no-public-access \
-    --policy-type RESOURCE_POLICY \
     --policy-document file://public_resource_policy.json \
     --resource-type AWS::S3::Bucket
 ```
@@ -121,7 +127,6 @@ aws accessanalyzer check-access-not-granted \
 3. Validating No Public Access
 ```
 aws accessanalyzer check-no-public-access \
-    --policy-type RESOURCE_POLICY \
     --policy-document file://public_resource_policy.json \
     --resource-type AWS::S3::Bucket
 ```
