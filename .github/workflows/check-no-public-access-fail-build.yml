@@ -25,7 +25,7 @@ jobs:
             --policy-document file://policies/public_resource_policy.json \
             --resource-type AWS::S3::Bucket > output.json
           INSPECTION_RES=$(cat output.json | grep "FAIL")
-          if [ "$INSPECTION_RES" !== "" ]; then
+          if [ "$INSPECTION_RES" != "" ]; then
             echo "Issues detected during analysis, details: $(cat output.json)" && exit 1
           else
             echo "Not detected issues with the submitted policy"
